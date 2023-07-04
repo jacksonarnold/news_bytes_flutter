@@ -1,7 +1,7 @@
 name: news_bytes
 description: The News Bytes mobile application for aggregating daily news.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -17,6 +17,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  amplify_flutter: ^1.0.0
+  amplify_auth_cognito: ^1.0.0
+  amplify_authenticator: ^1.0.0
 
   flutter_lints: ^2.0.0
 
