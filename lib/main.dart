@@ -3,6 +3,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'amplifyconfiguration.dart';
+import 'news_feed.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,9 +18,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        backgroundColor: Colors.black,
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'News Bytes 1'),
+      home: const MyHomePage(title: 'NewsBytes'),
     );
   }
 }
@@ -56,9 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return Authenticator(
       child: MaterialApp(
         builder: Authenticator.builder(),
-        home: const Scaffold(
+        home: Scaffold(
           body: Center(
-            child: Text('You are logged in!'),
+            child: NewsFeed(),
           ),
         ),
       ),
