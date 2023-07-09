@@ -9,32 +9,14 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        backgroundColor: Colors.black,
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'NewsBytes'),
-    );
-  }
+  State<MyApp> createState() => MyAppState();
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class MyAppState extends State<MyApp> {
 
   @override
   initState() {
@@ -49,7 +31,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
       await Amplify.configure(amplifyconfig);
     } on AmplifyAlreadyConfiguredException {
-      safePrint("Tried to reconfigure Amplify; this can occur when your app restarts on Android.");
+      // TODO: push error
+      safePrint(
+          "Tried to reconfigure Amplify; this can occur when your app restarts on Android."
+      );
     }
   }
 
@@ -57,8 +42,22 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Authenticator(
       child: MaterialApp(
+        title: 'NewsBytes',
+        debugShowCheckedModeBanner: false, // This line hides the debug banner
+        darkTheme: ThemeData(
+          scaffoldBackgroundColor: Colors.black,
+          colorScheme: const ColorScheme.dark(),
+          useMaterial3: true,
+        ),
+        theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(
+                seedColor: Colors.deepPurple,
+                background: Colors.black,
+                primary: Colors.black),
+            useMaterial3: true,
+            scaffoldBackgroundColor: Colors.black),
         builder: Authenticator.builder(),
-        home: Scaffold(
+        home: const Scaffold(
           body: Center(
             child: NewsFeed(),
           ),

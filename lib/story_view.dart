@@ -12,7 +12,7 @@ class StoryView extends StatelessWidget {
         child: Center(
           child: Text(
             newsItem,
-            style: TextStyle(fontSize: 24),
+            style: const TextStyle(fontSize: 24),
           ),
         ),
       ),
