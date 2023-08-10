@@ -41,21 +41,92 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Authenticator(
+      // can remove the below authenticatorBuilder code to use complete default settings
+      authenticatorBuilder: (BuildContext context, AuthenticatorState state) {
+        switch (state.currentStep) {
+          case AuthenticatorStep.signIn:
+            return CustomScaffold(
+              state: state,
+              // A prebuilt Sign In form from amplify_authenticator
+              body: SignInForm(),
+              // A custom footer with a button to take the user to sign up
+              footer: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Don\'t have an account?'),
+                  TextButton(
+                    onPressed: () => state.changeStep(
+                      AuthenticatorStep.signUp,
+                    ),
+                    child: const Text('Sign Up'),
+                  ),
+                ],
+              ),
+            );
+          case AuthenticatorStep.signUp:
+            return CustomScaffold(
+              state: state,
+              // A prebuilt Sign Up form from amplify_authenticator
+              body: SignUpForm(),
+              // A custom footer with a button to take the user to sign in
+              footer: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('Already have an account?'),
+                  TextButton(
+                    onPressed: () => state.changeStep(
+                      AuthenticatorStep.signIn,
+                    ),
+                    child: const Text('Sign In'),
+                  ),
+                ],
+              ),
+            );
+          case AuthenticatorStep.confirmSignUp:
+            return CustomScaffold(
+              state: state,
+              // A prebuilt Confirm Sign Up form from amplify_authenticator
+              body: ConfirmSignUpForm(),
+            );
+          case AuthenticatorStep.resetPassword:
+            return CustomScaffold(
+              state: state,
+              // A prebuilt Reset Password form from amplify_authenticator
+              body: ResetPasswordForm(),
+            );
+          case AuthenticatorStep.confirmResetPassword:
+            return CustomScaffold(
+              state: state,
+              // A prebuilt Confirm Reset Password form from amplify_authenticator
+              body: const ConfirmResetPasswordForm(),
+            );
+          default:
+          // Returning null defaults to the prebuilt authenticator for all other steps
+            return null;
+        }
+      },
       child: MaterialApp(
         title: 'NewsBytes',
         debugShowCheckedModeBanner: false, // This line hides the debug banner
+        themeMode: ThemeMode.dark,
         darkTheme: ThemeData(
           scaffoldBackgroundColor: Colors.black,
-          colorScheme: const ColorScheme.dark(),
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.blueGrey,
+            backgroundColor: Colors.black,
+            brightness: Brightness.dark,
+          ),
           useMaterial3: true,
         ),
         theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.deepPurple,
+                seedColor: Colors.white,
                 background: Colors.black,
-                primary: Colors.black),
+                primary: Colors.red,
+            ),
             useMaterial3: true,
-            scaffoldBackgroundColor: Colors.black),
+            scaffoldBackgroundColor: Colors.black,
+        ),
         builder: Authenticator.builder(),
         home: const Scaffold(
           body: Center(
@@ -66,3 +137,49 @@ class MyAppState extends State<MyApp> {
     );
   }
 }
+
+/// A widget that displays a logo, a body, and an optional footer.
+class CustomScaffold extends StatelessWidget {
+  const CustomScaffold({
+    super.key,
+    required this.state,
+    required this.body,
+    this.footer,
+  });
+
+  final AuthenticatorState state;
+  final Widget body;
+  final Widget? footer;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              // App logo
+              Padding(
+                padding: const EdgeInsets.only(top: 35),
+                // child: Center(child: FlutterLogo(size: 100)),
+                child: Center(
+                    child: Image.asset(
+                      "assets/images/last_build_run.png",
+                      height: 200,
+                    )
+                ),
+              ),
+              Container(
+                constraints: const BoxConstraints(maxWidth: 600),
+                child: body,
+              ),
+            ],
+          ),
+        ),
+      ),
+      persistentFooterButtons: footer != null ? [footer!] : null,
+    );
+  }
+}
+
