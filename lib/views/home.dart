@@ -15,6 +15,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: NavigationBar(
+        backgroundColor: Colors.black,
+        indicatorColor: Colors.white,
         onDestinationSelected: (int index) {
           setState(() {
             currentPageIndex = index;
@@ -23,7 +25,8 @@ class _HomeState extends State<Home> {
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
-            icon: Icon(Icons.dynamic_feed),
+            selectedIcon: Icon(Icons.dynamic_feed_outlined),
+            icon: Icon(Icons.dynamic_feed_sharp),
             label: 'Feed',
           ),
           NavigationDestination(
@@ -40,7 +43,7 @@ class _HomeState extends State<Home> {
       ),
       body: <Widget>[
         Container(
-          color: Colors.red,
+          color: Colors.black,
           alignment: Alignment.center,
           child: const NewsFeed(),
         ),
