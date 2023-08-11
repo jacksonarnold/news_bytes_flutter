@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
+import 'package:news_bytes/views/home.dart';
 import 'package:news_bytes/widgets/logo_scaffold.dart';
-import '../views/news_feed.dart';
 import 'amplifyconfiguration.dart';
 
 class MyApp extends StatefulWidget {
@@ -105,7 +105,7 @@ class MyAppState extends State<MyApp> {
       child: MaterialApp(
         title: 'NewsBytes',
         debugShowCheckedModeBanner: false, // This line hides the debug banner
-        themeMode: ThemeMode.dark,
+        themeMode: ThemeMode.dark, // hard set on dark mode theme for now
         darkTheme: ThemeData(
           scaffoldBackgroundColor: Colors.black,
           colorScheme: ColorScheme.fromSwatch(
@@ -127,7 +127,7 @@ class MyAppState extends State<MyApp> {
         builder: Authenticator.builder(),
         home: const Scaffold(
           body: Center(
-            child: NewsFeed(),
+            child: Home(),
           ),
         ),
       ),
