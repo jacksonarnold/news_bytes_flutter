@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'story_view.dart';
-import 'story_card.dart';
+import '../story_view.dart';
+import '../widgets/story_card.dart';
 
 class NewsFeed extends StatefulWidget {
   const NewsFeed({super.key});
