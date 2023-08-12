@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_bytes/views/news_feed.dart';
+import 'package:news_bytes/views/saved_stories.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -48,9 +49,9 @@ class _HomeState extends State<Home> {
           child: const NewsFeed(),
         ),
         Container(
-          color: Colors.green,
+          color: Colors.black,
           alignment: Alignment.center,
-          child: const Text('Page 2'),
+          child: SavedStoriesList(),
         ),
         Container(
           color: Colors.blue,
