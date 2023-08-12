@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../story_view.dart';
+
 class SavedStoriesList extends StatelessWidget {
   final List<Map<String, String>> stories = [
     {
@@ -26,16 +28,27 @@ class SavedStoriesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
       itemCount: stories.length,
-      // separatorBuilder: (context, index) => Divider(),
+      separatorBuilder: (context, index) => const Divider(
+        color: Colors.white60, // Set the color of the divider
+        thickness: 0.5,    // Set the thickness of the divider
+      ),
       itemBuilder: (context, index) {
         final story = stories[index];
         return ListTile(
           leading: Image.asset(story['image']!),
           title: Text(story['headline']!),
           onTap: () {
-            // TODO: Implement navigation to story details
+            // Show the news article in a new screen
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (BuildContext context) {
+                  return StoryView(newsItem: story["headline"]!);
+                },
+              ),
+            );
           },
         );
       },
