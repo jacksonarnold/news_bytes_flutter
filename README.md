@@ -2,16 +2,9 @@
 
 The News Bytes mobile application for aggregating daily news.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# news_bytes_flutter
+## Branching
+- `main` - production version of the application, no direct commits to main branch, only merges from dev
+- `dev` - stable development branch, used for creating new feature, bug, or developer branches and for changes in those branches to be merged back in
+- `<DEV_FIRSTNAME>_dev` (developer branch) - development branches for isolating changes by dev
+- `<FEATURE_NAME>_feature` (feature branch) - branch targeted to a specific feature
+- `<BUG_NAME>_bug` (bug branch) - branch targeted to a specific bug
