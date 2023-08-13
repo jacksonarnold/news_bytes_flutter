@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_bytes/views/news_feed.dart';
 import 'package:news_bytes/views/saved_stories.dart';
+import 'package:news_bytes/views/user_profile.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -38,25 +39,25 @@ class _HomeState extends State<Home> {
           NavigationDestination(
             selectedIcon: Icon(Icons.person_2),
             icon: Icon(Icons.person_2_outlined),
-            label: 'Saved',
+            label: 'Profile',
           ),
         ],
       ),
       body: <Widget>[
         Container(
-          color: Colors.black,
           alignment: Alignment.center,
           child: const NewsFeed(),
         ),
         Container(
-          color: Colors.black,
           alignment: Alignment.center,
           child: SavedStoriesList(),
         ),
         Container(
-          color: Colors.blue,
           alignment: Alignment.center,
-          child: const Text('Page 3'),
+          child: const UserProfile(
+            userName: 'John Doe',
+            profileImageUrl: 'assets/images/Pedro-Fake-Profile-696x392.jpg',
+          ),
         ),
       ][currentPageIndex],
     );
