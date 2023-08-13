@@ -1,7 +1,7 @@
 name: news_bytes
 description: The News Bytes mobile application for aggregating daily news.
 
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -13,15 +13,22 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  cached_network_image: ^3.2.3
+  amplify_flutter: ^1.3.0
+  amplify_auth_cognito: ^1.3.0
+  amplify_authenticator: ^1.3.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+
   flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
