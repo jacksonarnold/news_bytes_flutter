@@ -17,6 +17,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: NavigationBar(
+        height: 65,
         backgroundColor: Colors.black,
         indicatorColor: Colors.white,
         onDestinationSelected: (int index) {
