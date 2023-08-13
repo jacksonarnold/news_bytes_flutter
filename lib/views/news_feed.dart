@@ -25,6 +25,14 @@ class NewsFeedState extends State<NewsFeed> {
     'https://www.politico.com/dims4/default/41807e5/2147483647/resize/1524x/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F4a%2F57%2F29276f334da2aefb71e90c818167%2Fwr-leadimage-08-11-23-2.png'
   ];
 
+  List<String> subtitles = [
+    "After several flags were raised, the Ukrainian ambassador said that they would be open to taking a deeper look of money received from the U.S.",
+    "Russia ramped up its defenses after several weeks of fierce attacks by the Ukrainians on key infrastructural points for the Russians.",
+    "The Biden campaign continues to see Ohio as an all important battleground state in the upcoming election cycle.",
+    "Trump sees Florida as one of his toughest challenges in the Republican primary to start later this year.",
+    "In the 'purple' state of Ohio, abortion has been a raging battle that could serve as a litmus test for the 2024 election."
+  ];
+
   final PageController _pageController = PageController(viewportFraction: 0.85);
 
   @override
@@ -39,6 +47,7 @@ class NewsFeedState extends State<NewsFeed> {
           itemBuilder: (BuildContext context, int index) {
             return StoryCard(
               title: newsItems[index],
+              subtitle: subtitles[index],
               imageUrl: imageUrls[index],
               onTap: () {
                 // Show the news article in a new screen
