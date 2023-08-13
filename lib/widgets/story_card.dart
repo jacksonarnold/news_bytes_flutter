@@ -20,7 +20,7 @@ class StoryCard extends StatelessWidget {
       child: FractionallySizedBox(
         alignment: Alignment.topCenter,
         widthFactor: 1,
-        heightFactor: .8,
+        heightFactor: .9,
         child: Stack(
           children: [
             Container(
@@ -46,10 +46,13 @@ class StoryCard extends StatelessWidget {
             Positioned(
               bottom: 16, // Position from the bottom
               left: 16, // Position from the left
-              right: 16,  // Constraint from the right
+              right: 16, // Constraint from the right
               child: Text(
                 title,
-                style: const TextStyle(fontSize: 24, color: Colors.white),
+                style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
             )
           ],
