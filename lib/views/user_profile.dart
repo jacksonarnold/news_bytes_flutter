@@ -21,7 +21,8 @@ class UserProfile extends StatelessWidget {
               Center(
                 child: CircleAvatar(
                   radius: 50.0,
-                  backgroundImage: AssetImage(profileImageUrl), // Load image from assets
+                  backgroundImage:
+                      AssetImage(profileImageUrl), // Load image from assets
                 ),
               ),
               const SizedBox(height: 16.0), // Spacer for visual separation

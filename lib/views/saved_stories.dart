@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../widgets/stories_list.dart';
 
 class SavedStoriesList extends StatelessWidget {
-
   final List<Map<String, String>> stories = [
     {
       'headline': 'Ukraine Ambassador Open To More Scrutiny Of U.S. Aid',
       'image': 'assets/images/ukraine_story.webp'
     },
     {
-      'headline': 'Russia downs 20 drones over Crimea following a spate of attacks on Moscow',
+      'headline':
+          'Russia downs 20 drones over Crimea following a spate of attacks on Moscow',
       'image': 'assets/images/russia_drones.jpeg'
     },
     {
@@ -17,7 +17,8 @@ class SavedStoriesList extends StatelessWidget {
       'image': 'assets/images/biden.jpeg'
     },
     {
-      'headline': 'Trump campaign brings in longtime political operative to lead Florida effort',
+      'headline':
+          'Trump campaign brings in longtime political operative to lead Florida effort',
       'image': 'assets/images/trump.jpeg'
     },
     {
