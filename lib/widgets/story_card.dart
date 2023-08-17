@@ -22,9 +22,9 @@ class StoryCard extends StatelessWidget {
       child: FractionallySizedBox(
         alignment: Alignment.topCenter,
         widthFactor: 1,
-        heightFactor: .9,
+        heightFactor: .95,
         child: Stack(
-          fit: StackFit.expand, // Make the stack fill the entire screen
+          fit: StackFit.expand,
           children: [
             Container(
               decoration: BoxDecoration(

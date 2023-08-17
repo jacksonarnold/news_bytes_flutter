@@ -27,7 +27,6 @@ class NewsFeedState extends State<NewsFeed> {
     'https://img.huffingtonpost.com/asset/64d68f932500005a003a8a98.jpg?ops=scalefit_1280_noupscale&format=webp',
     'https://www.politico.com/dims4/default/e26c3cc/2147483647/strip/true/crop/6000x4000+0+0/resize/1260x840!/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F2d%2Fa6%2F32ad03ae413a865a817c90333121%2Frussia-ukraine-drone-attack-96996.jpg',
     'https://www.politico.com/dims4/default/8c3e667/2147483647/strip/true/crop/4063x2709+0+0/resize/1260x840!/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F1b%2F01%2Fafcb7731499d8e4355b1a4db6307%2Fbiden-98156.jpg',
-    // paris air
     'https://www.uas.aero/wp-content/uploads/2015/06/Paris_AirShow3-1.jpg',
     'https://www.politico.com/dims4/default/51b3e71/2147483647/strip/true/crop/2697x1820+0+0/resize/1260x850!/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2Fe0%2Fff%2F39c477bd49e99e9878385aa8e6cd%2Ffl-election-2018-florida-news-guide-30823.jpg',
     'https://www.politico.com/dims4/default/41807e5/2147483647/resize/1524x/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F4a%2F57%2F29276f334da2aefb71e90c818167%2Fwr-leadimage-08-11-23-2.png'
@@ -61,34 +60,51 @@ class NewsFeedState extends State<NewsFeed> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black45,
-      body: PageView.builder(
-        // Remove SafeArea
-        controller: _pageController,
-        scrollDirection: Axis.vertical,
-        itemCount: newsItems.length,
-        itemBuilder: (BuildContext context, int index) {
-          return StoryCard(
-            title: newsItems[index],
-            subtitle: subtitles[index],
-            imageUrl: imageUrls[index],
-            onTap: () {
-              // Show the news article in a new screen
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return StoryView(
-                      newsItem: newsItems[index],
-                      imageUrl: imageUrls[index],
-                      storyPath: storypaths[index],
-                    );
-                  },
-                ),
-              );
-            },
-          );
-        },
+      body: SafeArea(
+        // Added SafeArea here
+        child: PageView.builder(
+          controller: _pageController,
+          scrollDirection: Axis.vertical,
+          itemCount: newsItems.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: StoryCard(
+                title: newsItems[index],
+                subtitle: subtitles[index],
+                imageUrl: imageUrls[index],
+                onTap: () {
+                  // Show the news article in a new screen
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return StoryView(
+                          newsItem: newsItems[index],
+                          imageUrl: imageUrls[index],
+                          storyPath: storypaths[index],
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // You can define your action here
+        },
+        backgroundColor: Colors.black,
+        child: const Image(
+          image: AssetImage(
+              'assets/images/logo.png'), // Local asset image
+          fit: BoxFit.cover,
+        ), // Position at the bottom-right
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
   }
 }

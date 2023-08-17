@@ -61,6 +61,14 @@ class StoryView extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // You can define your action here
+        },
+        backgroundColor: Colors.blueGrey,
+        child: const Icon(Icons.chat),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
