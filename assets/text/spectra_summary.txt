@@ -1,15 +1,15 @@
-What are some things to takeaway?
-1. Spectra (SPCT) aims to challenge the crypto industry's status quo set by EOS and Polkadot by focusing on transparency, profit-sharing, and community participation.
-2. Spectra offers unique benefits to token holders like privileged access to pre-ICOs, investing in VC funds, and transaction fee payment convenience.
-3. EOS and Polkadot differentiate themselves through their blockchain platforms and governance models.
-4. The document emphasizes Spectra's innovations and superiority, including transparency and profit-sharing.
+### What are some things to takeaway?
+- Spectra (SPCT) aims to challenge the crypto industry's status quo set by EOS and Polkadot by focusing on transparency, profit-sharing, and community participation.
+- Spectra offers unique benefits to token holders like privileged access to pre-ICOs, investing in VC funds, and transaction fee payment convenience.
+- EOS and Polkadot differentiate themselves through their blockchain platforms and governance models.
+- The document emphasizes Spectra's innovations and superiority, including transparency and profit-sharing.
 
-What are some items to deep dive here?
+### What are some items to deep dive here?
 - Explore the technical details of Spectra's platform, including its underlying technology and security features.
 - Analyze the performance and scalability of EOS and Polkadot in comparison to Spectra.
 - Investigate the user experience, developer friendliness, and programming languages of all three platforms.
 - Research the governance models and financial implications for token holders across Spectra, EOS, and Polkadot.
 
-Presented narratives and perspectives with potential bias:
+### Presented narratives and perspectives with potential bias:
 - The document predominantly portrays Spectra as a groundbreaking platform, emphasizing its benefits and approach.
 - It suggests Spectra's superiority by offering unique opportunities and control to token holders but lacks insights into drawbacks or limitations, indicating a bias towards promoting Spectra.

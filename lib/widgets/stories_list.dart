@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../story_view.dart';
+import '../views/story_view.dart';
 
 class StoriesList extends StatelessWidget {
   final List<Map<String, String>> stories;
@@ -25,7 +25,12 @@ class StoriesList extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (BuildContext context) {
-                  return StoryView(newsItem: story["headline"]!);
+                  return StoryView(
+                    newsItem: story["headline"]!,
+                    imageUrl:
+                        'https://cdn.houstonpublicmedia.org/wp-content/uploads/2021/11/05154405/Clinic-1000x667.jpg',
+                    storyPath: 'assets/text/medicaid_summary.txt',
+                  );
                 },
               ),
             );
