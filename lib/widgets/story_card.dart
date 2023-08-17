@@ -24,6 +24,7 @@ class StoryCard extends StatelessWidget {
         widthFactor: 1,
         heightFactor: .9,
         child: Stack(
+          fit: StackFit.expand, // Make the stack fill the entire screen
           children: [
             Container(
               decoration: BoxDecoration(
