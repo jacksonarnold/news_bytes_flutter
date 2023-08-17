@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:news_bytes/views/chat_view.dart';
 
 class StoryView extends StatelessWidget {
   final String newsItem;
@@ -63,7 +64,10 @@ class StoryView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // You can define your action here
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ChatView()),
+          );
         },
         backgroundColor: Colors.blueGrey,
         child: const Icon(Icons.chat),
