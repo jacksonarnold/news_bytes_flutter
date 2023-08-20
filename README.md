@@ -1,6 +1,6 @@
 # news_bytes
 
-The News Bytes mobile application for aggregating daily news.
+The NewsBytes mobile application for aggregating daily news.
 
 ## Branching
 - `main` - production version of the application, no direct commits to main branch, only merges from dev

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ChatView extends StatefulWidget {
+  const ChatView({super.key});
+
   @override
   _ChatViewState createState() => _ChatViewState();
 }
@@ -19,7 +21,7 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Chat')),
+      appBar: AppBar(title: const Text('Chat')),
       body: Column(
         children: <Widget>[
           Expanded(
@@ -54,13 +56,13 @@ class _ChatViewState extends State<ChatView> {
               child: TextField(
                 controller: _textController,
                 onSubmitted: _handleSubmitted,
-                decoration: InputDecoration.collapsed(hintText: 'Send a message'),
+                decoration: const InputDecoration.collapsed(hintText: 'Send a message'),
               ),
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 4.0),
               child: IconButton(
-                icon: Icon(Icons.send),
+                icon: const Icon(Icons.send),
                 onPressed: () => _handleSubmitted(_textController.text),
               ),
             ),
