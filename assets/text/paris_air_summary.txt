@@ -11,6 +11,21 @@
 - Investigation into the industry's greenwashing claims and the authenticity of airlines' sustainability efforts.
 - Research into the industry's long-term plans and feasibility of achieving net zero emissions by 2050.
 
-### Presented narratives and perspectives with potential bias:
-- The summary emphasizes the aviation industry's sustainability focus and challenges, particularly regarding SAF and alternative fuel sources.
-- It highlights the importance of sustainability but may lack a critical perspective on greenwashing claims or a detailed exploration of economic and technological barriers.
+### Evaluated Narratives:
+
+#### Left:
+- Urgency of transitioning to sustainable aviation fuel and criticize the aviation industry for not doing enough to reduce emissions
+need for government regulations and investments to promote the development and availability of sustainable fuel
+
+#### Right:
+- Economic costs of transitioning to sustainable fuel, including potential increases in ticket prices
+market-driven solutions and criticize government regulations that could impose additional burdens on airlines and passengers
+
+#### Unbiased:
+- Challenges and trade-offs involved in transitioning to sustainable aviation fuel need for a balanced approach that addresses
+ the limitations of current technology while promoting the development and widespread adoption of sustainable fuel.
+
+#### Authorship:
+- Mentions specific airlines like Delta Air Lines and Air France, as well as their involvement in lawsuits and complaints
+related to their claims of carbon neutrality and greenwashing references may indicate potential biases in the way these airlines
+are portrayed or interpreted in the article
