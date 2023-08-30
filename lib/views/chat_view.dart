@@ -4,7 +4,7 @@ class ChatView extends StatefulWidget {
   const ChatView({super.key});
 
   @override
-  _ChatViewState createState() => _ChatViewState();
+  State<ChatView> createState() => _ChatViewState();
 }
 
 class _ChatViewState extends State<ChatView> {
@@ -35,7 +35,7 @@ class _ChatViewState extends State<ChatView> {
               },
             ),
           ),
-          Divider(height: 1.0),
+          const Divider(height: 1.0),
           Container(
             decoration: BoxDecoration(color: Theme.of(context).cardColor),
             child: _buildTextComposer(),
@@ -60,7 +60,7 @@ class _ChatViewState extends State<ChatView> {
               ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 4.0),
+              margin: const EdgeInsets.symmetric(horizontal: 4.0),
               child: IconButton(
                 icon: const Icon(Icons.send),
                 onPressed: () => _handleSubmitted(_textController.text),

@@ -23,56 +23,62 @@ class StoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              // Displaying the image
-              CachedNetworkImage(
-                imageUrl: imageUrl,
-                fit: BoxFit.cover,
-                width: double.infinity,
-              ),
-              // Title
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  newsItem,
-                  style: const TextStyle(fontSize: 24),
-                ),
-              ),
-              // Text from the file
-              FutureBuilder<String>(
-                future: loadAsset(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator();
-                  } else if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  } else {
-                    return Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: MarkdownBody(data: snapshot.data ?? ''),
-                    );
-                  }
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ChatView()),
-          );
+    return GestureDetector(
+        onHorizontalDragEnd: (DragEndDetails details) {
+          if (details.velocity.pixelsPerSecond.dx > 200) {
+            Navigator.pop(context);
+          }
         },
-        backgroundColor: Colors.blueGrey,
-        child: const Icon(Icons.chat),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-    );
+        child: Scaffold(
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  // Displaying the image
+                  CachedNetworkImage(
+                    imageUrl: imageUrl,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                  ),
+                  // Title
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      newsItem,
+                      style: const TextStyle(fontSize: 24),
+                    ),
+                  ),
+                  // Text from the file
+                  FutureBuilder<String>(
+                    future: loadAsset(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const CircularProgressIndicator();
+                      } else if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      } else {
+                        return Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: MarkdownBody(data: snapshot.data ?? ''),
+                        );
+                      }
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const ChatView()),
+              );
+            },
+            backgroundColor: Colors.blueGrey,
+            child: const Icon(Icons.chat),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        ));
   }
 }
