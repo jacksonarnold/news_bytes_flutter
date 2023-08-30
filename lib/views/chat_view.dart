@@ -20,29 +20,35 @@ class _ChatViewState extends State<ChatView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Chat')),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: ListView.builder(
-              reverse: true,
-              itemCount: _messages.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(_messages[index]),
-                );
-              },
-            ),
+    return GestureDetector(
+        onHorizontalDragEnd: (DragEndDetails details) {
+          if (details.primaryVelocity! > 0) {
+            Navigator.pop(context);
+          }
+        },
+        child: Scaffold(
+          appBar: AppBar(title: const Text('Chat')),
+          body: Column(
+            children: <Widget>[
+              Expanded(
+                child: ListView.builder(
+                  reverse: true,
+                  itemCount: _messages.length,
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(_messages[index]),
+                    );
+                  },
+                ),
+              ),
+              const Divider(height: 1.0),
+              Container(
+                decoration: BoxDecoration(color: Theme.of(context).cardColor),
+                child: _buildTextComposer(),
+              ),
+            ],
           ),
-          const Divider(height: 1.0),
-          Container(
-            decoration: BoxDecoration(color: Theme.of(context).cardColor),
-            child: _buildTextComposer(),
-          ),
-        ],
-      ),
-    );
+        ));
   }
 
   Widget _buildTextComposer() {
@@ -57,7 +63,8 @@ class _ChatViewState extends State<ChatView> {
               child: TextField(
                 controller: _textController,
                 onSubmitted: _handleSubmitted,
-                decoration: const InputDecoration.collapsed(hintText: 'Send a message'),
+                decoration:
+                    const InputDecoration.collapsed(hintText: 'Send a message'),
               ),
             ),
             Container(

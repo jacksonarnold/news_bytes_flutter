@@ -51,56 +51,91 @@ class NewsFeedState extends State<NewsFeed> {
   ];
 
   final PageController _pageController = PageController(viewportFraction: 0.85);
+  int currentPage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      int next = _pageController.page!.round();
+      if (currentPage != next) {
+        setState(() {
+          currentPage = next;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black45,
-      body: SafeArea(
-        // Added SafeArea here
-        child: PageView.builder(
-          controller: _pageController,
-          scrollDirection: Axis.vertical,
-          itemCount: newsItems.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 20.0),
-              child: StoryCard(
-                title: newsItems[index],
-                subtitle: subtitles[index],
-                imageUrl: imageUrls[index],
-                onTap: () {
-                  // Show the news article in a new screen
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) {
-                        return StoryView(
-                          newsItem: newsItems[index],
-                          imageUrl: imageUrls[index],
-                          storyPath: storypaths[index],
-                        );
-                      },
-                    ),
-                  );
-                },
-              ),
-            );
-          },
+      body: Stack(children: [
+        SafeArea(
+          // Added SafeArea here
+          child: PageView.builder(
+            controller: _pageController,
+            scrollDirection: Axis.vertical,
+            itemCount: newsItems.length,
+            onPageChanged: (int page) {  // Add this line
+              setState(() {
+                currentPage = page;
+              });
+            },
+            itemBuilder: (BuildContext context, int index) {
+              return Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: StoryCard(
+                  title: newsItems[index],
+                  subtitle: subtitles[index],
+                  imageUrl: imageUrls[index],
+                  onTap: () {
+                    // Show the news article in a new screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (BuildContext context) {
+                          return StoryView(
+                            newsItem: newsItems[index],
+                            imageUrl: imageUrls[index],
+                            storyPath: storypaths[index],
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
+              );
+            },
+          ),
         ),
-      ),
+        Positioned(
+            left: 5,
+            bottom: 300,
+            child: Column(
+                children: List.generate(newsItems.length, (index) {
+              return Container(
+                width: 12,
+                height: 12,
+                margin: const EdgeInsets.symmetric(vertical: 10),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: currentPage == index ? Colors.black : Colors.white,
+                ),
+              );
+            }))),
+      ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // You can define your action here
         },
         backgroundColor: Colors.black,
         child: const Image(
-          image: AssetImage(
-              'assets/images/logo.png'), // Local asset image
+          image: AssetImage('assets/images/logo.png'), // Local asset image
           fit: BoxFit.cover,
         ), // Position at the bottom-right
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
     );
   }
 }

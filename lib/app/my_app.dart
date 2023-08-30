@@ -4,6 +4,7 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:news_bytes/views/home.dart';
 import 'package:news_bytes/widgets/logo_scaffold.dart';
+import '../views/news_feed.dart';
 import 'amplifyconfiguration.dart';
 
 class MyApp extends StatefulWidget {
@@ -127,7 +128,9 @@ class MyAppState extends State<MyApp> {
         builder: Authenticator.builder(),
         home: const Scaffold(
           body: Center(
-            child: Home(),
+            // TODO: select one or the other
+            // child: Home(),
+            child: NewsFeed(),
           ),
         ),
       ),
