@@ -46,7 +46,8 @@ class _ChatViewState extends State<ChatView> {
   }
 
   Widget _buildTextComposer() {
-    return IconTheme(
+    return SafeArea(
+        child: IconTheme(
       data: IconThemeData(color: Theme.of(context).canvasColor),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -69,6 +70,6 @@ class _ChatViewState extends State<ChatView> {
           ],
         ),
       ),
-    );
+    ));
   }
 }
