@@ -32,39 +32,42 @@ class StoryView extends StatelessWidget {
         child: Scaffold(
           body: SafeArea(
             child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  // Displaying the image
-                  CachedNetworkImage(
-                    imageUrl: imageUrl,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                  ),
-                  // Title
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      newsItem,
-                      style: const TextStyle(fontSize: 24),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 70.0), // Adding 70.0 units of padding to the bottom
+                child: Column(
+                  children: [
+                    // Displaying the image
+                    CachedNetworkImage(
+                      imageUrl: imageUrl,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
                     ),
-                  ),
-                  // Text from the file
-                  FutureBuilder<String>(
-                    future: loadAsset(),
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const CircularProgressIndicator();
-                      } else if (snapshot.hasError) {
-                        return Text('Error: ${snapshot.error}');
-                      } else {
-                        return Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: MarkdownBody(data: snapshot.data ?? ''),
-                        );
-                      }
-                    },
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        newsItem,
+                        style: const TextStyle(fontSize: 24),
+                      ),
+                    ),
+                    FutureBuilder<String>(
+                      future: loadAsset(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const CircularProgressIndicator();
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else {
+                          return Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: MarkdownBody(data: snapshot.data ?? ''),
+                          );
+                        }
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -77,7 +77,8 @@ class NewsFeedState extends State<NewsFeed> {
             controller: _pageController,
             scrollDirection: Axis.vertical,
             itemCount: newsItems.length,
-            onPageChanged: (int page) {  // Add this line
+            onPageChanged: (int page) {
+              // Add this line
               setState(() {
                 currentPage = page;
               });
@@ -110,20 +111,40 @@ class NewsFeedState extends State<NewsFeed> {
           ),
         ),
         Positioned(
-            left: 5,
-            bottom: 300,
-            child: Column(
-                children: List.generate(newsItems.length, (index) {
-              return Container(
-                width: 12,
-                height: 12,
-                margin: const EdgeInsets.symmetric(vertical: 10),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: currentPage == index ? Colors.black : Colors.white,
+          left: 80,
+          top: 70, // Position at the top-left corner
+          child: Row(
+            // Change Column to Row for horizontal layout
+            children: List.generate(newsItems.length, (index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 2), // Add some horizontal padding
+                child: GestureDetector(
+                  onTap: () {
+                    _pageController.animateToPage(index,
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeIn);
+                  },
+                  child: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: currentPage == index
+                              ? Colors.white
+                              : Colors.transparent,
+                          width: 2.0),
+                      image: DecorationImage(
+                        image: NetworkImage(imageUrls[index]),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                 ),
               );
-            }))),
+            }),
+          ),
+        ),
       ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
