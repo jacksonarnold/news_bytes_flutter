@@ -129,8 +129,8 @@ class MyAppState extends State<MyApp> {
         home: const Scaffold(
           body: Center(
             // TODO: select one or the other
-            child: Home(),
-            // child: NewsFeed(),
+            // child: Home(),
+            child: NewsFeed(),
           ),
         ),
       ),

@@ -148,7 +148,9 @@ class NewsFeedState extends State<NewsFeed> {
       ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // You can define your action here
+          _pageController.animateToPage(0,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeIn);
         },
         backgroundColor: Colors.black,
         child: const Image(
