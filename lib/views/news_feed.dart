@@ -69,96 +69,134 @@ class NewsFeedState extends State<NewsFeed> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black45,
-      body: Stack(children: [
-        SafeArea(
-          // Added SafeArea here
-          child: PageView.builder(
-            controller: _pageController,
-            scrollDirection: Axis.vertical,
-            itemCount: newsItems.length,
-            onPageChanged: (int page) {
-              // Add this line
-              setState(() {
-                currentPage = page;
-              });
-            },
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: StoryCard(
-                  title: newsItems[index],
-                  subtitle: subtitles[index],
-                  imageUrl: imageUrls[index],
-                  onTap: () {
-                    // Show the news article in a new screen
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) {
-                          return StoryView(
-                            newsItem: newsItems[index],
-                            imageUrl: imageUrls[index],
-                            storyPath: storypaths[index],
-                          );
-                        },
-                      ),
-                    );
-                  },
-                ),
-              );
-            },
-          ),
-        ),
-        Positioned(
-          left: 80,
-          top: 70, // Position at the top-left corner
-          child: Row(
-            // Change Column to Row for horizontal layout
-            children: List.generate(newsItems.length, (index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 2), // Add some horizontal padding
-                child: GestureDetector(
-                  onTap: () {
-                    _pageController.animateToPage(index,
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeIn);
-                  },
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                          color: currentPage == index
-                              ? Colors.white
-                              : Colors.transparent,
-                          width: 2.0),
-                      image: DecorationImage(
-                        image: NetworkImage(imageUrls[index]),
-                        fit: BoxFit.cover,
-                      ),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        leading: Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: FloatingActionButton(
+              onPressed: () {
+                _pageController.animateToPage(0,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeIn);
+              },
+              backgroundColor: Colors.black,
+              child: const Image(
+                image: AssetImage('assets/images/logo.png'),
+                fit: BoxFit.cover,
+              ),
+            )),
+        title: Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Row(
+              children: List.generate(newsItems.length, (index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  child: GestureDetector(
+                    onTap: () {
+                      _pageController.animateToPage(index,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeIn);
+                    },
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // Hexagonal border
+                        ClipPath(
+                          clipper: HexagonClipper(),
+                          child: Container(
+                            width: 36,  // Slightly larger to accommodate the border
+                            height: 36, // Slightly larger to accommodate the border
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: currentPage == index
+                                    ? Colors.white
+                                    : Colors.transparent,
+                                width: 10.0,
+                              ),
+                            ),
+                          ),
+                        ),
+                        // Hexagonal image
+                        ClipPath(
+                          clipper: HexagonClipper(),
+                          child: Container(
+                            width: 32,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: NetworkImage(imageUrls[index]),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              );
-            }),
-          ),
+                );
+              }),
+            )
         ),
-      ]),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _pageController.animateToPage(0,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeIn);
-        },
-        backgroundColor: Colors.black,
-        child: const Image(
-          image: AssetImage('assets/images/logo.png'), // Local asset image
-          fit: BoxFit.cover,
-        ), // Position at the bottom-right
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+      backgroundColor: Colors.black45,
+      body: SafeArea(
+        child: PageView.builder(
+          controller: _pageController,
+          scrollDirection: Axis.vertical,
+          itemCount: newsItems.length,
+          onPageChanged: (int page) {
+            setState(() {
+              currentPage = page;
+            });
+          },
+          itemBuilder: (BuildContext context, int index) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: StoryCard(
+                title: newsItems[index],
+                subtitle: subtitles[index],
+                imageUrl: imageUrls[index],
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) {
+                        return StoryView(
+                          newsItem: newsItems[index],
+                          imageUrl: imageUrls[index],
+                          storyPath: storypaths[index],
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            );
+          },
+        ),
+      ),
     );
+  }
+}
+
+
+// Define the CustomClipper class
+class HexagonClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final Path path = Path();
+    path.moveTo(size.width * 0.5, 0);
+    path.lineTo(size.width, size.height * 0.25);
+    path.lineTo(size.width, size.height * 0.75);
+    path.lineTo(size.width * 0.5, size.height);
+    path.lineTo(0, size.height * 0.75);
+    path.lineTo(0, size.height * 0.25);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) {
+    return false;
   }
 }
