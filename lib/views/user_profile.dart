@@ -95,6 +95,19 @@ class UserProfile extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 30.0),
+                // "Saved" pill
+                Container(
+                  width: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.black54,
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(color: Colors.white54, width: 1)),
+                  child: const Align(
+                    alignment: Alignment.center,
+                    child: Text("Saved", style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+                const SizedBox(height: 20.0),
                 // 4x4 Grid of Square Images for Saved Stories
                 GridView.builder(
                   shrinkWrap: true,
