@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news_bytes/views/saved_stories.dart';
 import 'package:news_bytes/views/settings_screen.dart';
 
 class UserProfile extends StatelessWidget {

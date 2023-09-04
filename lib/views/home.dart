@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_bytes/views/news_feed.dart';
-import 'package:news_bytes/views/saved_stories.dart';
 import 'package:news_bytes/views/user_profile.dart';
 
 class Home extends StatefulWidget {
