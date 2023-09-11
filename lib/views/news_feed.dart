@@ -26,12 +26,12 @@ class NewsFeedState extends State<NewsFeed> {
 
   List<String> imageUrls = [
     'https://cdn.houstonpublicmedia.org/wp-content/uploads/2021/11/05154405/Clinic-1000x667.jpg',
-    'https://img.huffingtonpost.com/asset/64d68f932500005a003a8a98.jpg?ops=scalefit_1280_noupscale&format=webp',
-    'https://www.politico.com/dims4/default/e26c3cc/2147483647/strip/true/crop/6000x4000+0+0/resize/1260x840!/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F2d%2Fa6%2F32ad03ae413a865a817c90333121%2Frussia-ukraine-drone-attack-96996.jpg',
-    'https://www.politico.com/dims4/default/8c3e667/2147483647/strip/true/crop/4063x2709+0+0/resize/1260x840!/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F1b%2F01%2Fafcb7731499d8e4355b1a4db6307%2Fbiden-98156.jpg',
-    'https://www.uas.aero/wp-content/uploads/2015/06/Paris_AirShow3-1.jpg',
-    'https://www.politico.com/dims4/default/51b3e71/2147483647/strip/true/crop/2697x1820+0+0/resize/1260x850!/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2Fe0%2Fff%2F39c477bd49e99e9878385aa8e6cd%2Ffl-election-2018-florida-news-guide-30823.jpg',
-    'https://www.politico.com/dims4/default/41807e5/2147483647/resize/1524x/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F4a%2F57%2F29276f334da2aefb71e90c818167%2Fwr-leadimage-08-11-23-2.png'
+    // 'https://img.huffingtonpost.com/asset/64d68f932500005a003a8a98.jpg?ops=scalefit_1280_noupscale&format=webp',
+    // 'https://www.politico.com/dims4/default/e26c3cc/2147483647/strip/true/crop/6000x4000+0+0/resize/1260x840!/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F2d%2Fa6%2F32ad03ae413a865a817c90333121%2Frussia-ukraine-drone-attack-96996.jpg',
+    // 'https://www.politico.com/dims4/default/8c3e667/2147483647/strip/true/crop/4063x2709+0+0/resize/1260x840!/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F1b%2F01%2Fafcb7731499d8e4355b1a4db6307%2Fbiden-98156.jpg',
+    // 'https://www.uas.aero/wp-content/uploads/2015/06/Paris_AirShow3-1.jpg',
+    // 'https://www.politico.com/dims4/default/51b3e71/2147483647/strip/true/crop/2697x1820+0+0/resize/1260x850!/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2Fe0%2Fff%2F39c477bd49e99e9878385aa8e6cd%2Ffl-election-2018-florida-news-guide-30823.jpg',
+    // 'https://www.politico.com/dims4/default/41807e5/2147483647/resize/1524x/quality/90/?url=https%3A%2F%2Fstatic.politico.com%2F4a%2F57%2F29276f334da2aefb71e90c818167%2Fwr-leadimage-08-11-23-2.png'
   ];
 
   List<String> subtitles = [
@@ -54,7 +54,10 @@ class NewsFeedState extends State<NewsFeed> {
     'assets/text/medicaid_summary.txt'
   ];
 
-  final NewsFeedService newsService = NewsFeedService('http://your.api/endpoint'); // <-- Initialize your NewsService
+  Future<ApiResponse>? newsFeedFuture;
+
+  final NewsFeedService newsService =
+      NewsFeedService('http://your.api/endpoint');
 
   final PageController _pageController = PageController(viewportFraction: 0.85);
   int currentPage = 0;
@@ -62,6 +65,7 @@ class NewsFeedState extends State<NewsFeed> {
   @override
   void initState() {
     super.initState();
+    newsFeedFuture = newsService.fetchNewsFeed();
     _pageController.addListener(() {
       int next = _pageController.page!.round();
       if (currentPage != next) {
@@ -81,9 +85,12 @@ class NewsFeedState extends State<NewsFeed> {
             padding: const EdgeInsets.only(bottom: 8.0),
             child: FloatingActionButton(
               onPressed: () {
-                _pageController.animateToPage(0,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeIn);
+                // _pageController.animateToPage(0,
+                //     duration: const Duration(milliseconds: 300),
+                //     curve: Curves.easeIn);
+                setState(() {
+                  newsFeedFuture = newsService.fetchNewsFeed();
+                });
               },
               backgroundColor: Colors.black,
               child: const Image(
@@ -101,14 +108,13 @@ class NewsFeedState extends State<NewsFeed> {
       backgroundColor: Colors.black45,
       body: SafeArea(
         child: FutureBuilder<ApiResponse>(
-          future: newsService.fetchNewsFeed(),
+          future: newsFeedFuture,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator(); // Show a loader while waiting
+              return const Center(child:  CircularProgressIndicator(),);
             } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}'); // Show an error message
+              return Text('Error: ${snapshot.error}');
             } else {
-              // API call is complete and no errors occurred
               final stories = snapshot.data!.data.stories;
 
               return PageView.builder(
@@ -125,7 +131,7 @@ class NewsFeedState extends State<NewsFeed> {
                     padding: const EdgeInsets.only(top: 10.0),
                     child: StoryCard(
                       title: stories[index].originalTitle,
-                      subtitle: stories[index].originalTitle,
+                      subtitle: subtitles[index],
                       imageUrl: imageUrls[index],
                       onTap: () {
                         Navigator.push(
@@ -135,7 +141,7 @@ class NewsFeedState extends State<NewsFeed> {
                               return StoryViewTest(
                                 newsItem: stories[index].originalTitle,
                                 imageUrl: imageUrls[index],
-                                storyPath: stories[index].originalStory,
+                                storyPath: storypaths[index],
                               );
                             },
                           ),
