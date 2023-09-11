@@ -9,7 +9,8 @@ class NewsFeedService {
   NewsFeedService(this.apiUrl);
 
   Future<ApiResponse> fetchNewsFeed() async {
-    final response = await http.get(Uri.parse('$apiUrl/news-feed'));
+    // final response = await http.get(Uri.parse('$apiUrl/news-feed'));
+    final response = await http.get(Uri.parse('http://newsbytes-development.eba-py5jkxr9.us-east-2.elasticbeanstalk.com/stories'));
 
     if (response.statusCode == 200) {
       return ApiResponse.fromJson(jsonDecode(response.body));

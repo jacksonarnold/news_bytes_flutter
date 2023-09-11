@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:news_bytes/views/story_view_test.dart';
+import '../models/api_response.dart';
 import '../widgets/image_carousel.dart';
 import 'story_view.dart';
 import '../widgets/story_card.dart';
+import '../services/newsfeed_service.dart';
 
 class NewsFeed extends StatefulWidget {
   const NewsFeed({super.key});
@@ -51,6 +54,8 @@ class NewsFeedState extends State<NewsFeed> {
     'assets/text/medicaid_summary.txt'
   ];
 
+  final NewsFeedService newsService = NewsFeedService('http://your.api/endpoint'); // <-- Initialize your NewsService
+
   final PageController _pageController = PageController(viewportFraction: 0.85);
   int currentPage = 0;
 
@@ -95,38 +100,52 @@ class NewsFeedState extends State<NewsFeed> {
       ),
       backgroundColor: Colors.black45,
       body: SafeArea(
-        child: PageView.builder(
-          controller: _pageController,
-          scrollDirection: Axis.vertical,
-          itemCount: newsItems.length,
-          onPageChanged: (int page) {
-            setState(() {
-              currentPage = page;
-            });
-          },
-          itemBuilder: (BuildContext context, int index) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: StoryCard(
-                title: newsItems[index],
-                subtitle: subtitles[index],
-                imageUrl: imageUrls[index],
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (BuildContext context) {
-                        return StoryView(
-                          newsItem: newsItems[index],
-                          imageUrl: imageUrls[index],
-                          storyPath: storypaths[index],
+        child: FutureBuilder<ApiResponse>(
+          future: newsService.fetchNewsFeed(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator(); // Show a loader while waiting
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}'); // Show an error message
+            } else {
+              // API call is complete and no errors occurred
+              final stories = snapshot.data!.data.stories;
+
+              return PageView.builder(
+                controller: _pageController,
+                scrollDirection: Axis.vertical,
+                itemCount: stories.length,
+                onPageChanged: (int page) {
+                  setState(() {
+                    currentPage = page;
+                  });
+                },
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: StoryCard(
+                      title: stories[index].originalTitle,
+                      subtitle: stories[index].originalTitle,
+                      imageUrl: imageUrls[index],
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return StoryViewTest(
+                                newsItem: stories[index].originalTitle,
+                                imageUrl: imageUrls[index],
+                                storyPath: stories[index].originalStory,
+                              );
+                            },
+                          ),
                         );
                       },
                     ),
                   );
                 },
-              ),
-            );
+              );
+            }
           },
         ),
       ),
