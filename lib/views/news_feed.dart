@@ -138,7 +138,7 @@ class NewsFeedState extends State<NewsFeed> {
                           context,
                           MaterialPageRoute(
                             builder: (BuildContext context) {
-                              return StoryViewTest(
+                              return StoryView(
                                 newsItem: stories[index].originalTitle,
                                 imageUrl: imageUrls[index],
                                 storyPath: storypaths[index],
