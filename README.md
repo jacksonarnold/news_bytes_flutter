@@ -8,3 +8,7 @@ The NewsBytes mobile application for aggregating daily news.
 - `<DEV_FIRSTNAME>_dev` (developer branch) - development branches for isolating changes by dev
 - `<FEATURE_NAME>_feature` (feature branch) - branch targeted to a specific feature
 - `<BUG_NAME>_bug` (bug branch) - branch targeted to a specific bug
+
+## Android Builds
+- `flutter clean` - clean before running a build
+- `flutter build appbundle --release` - create a new app bundle run
