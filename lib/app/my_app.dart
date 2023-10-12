@@ -127,6 +127,7 @@ class MyAppState extends State<MyApp> {
         builder: Authenticator.builder(),
         home: const Scaffold(
           body: Center(
+            // TODO: select one or the other
             child: Home(),
           ),
         ),

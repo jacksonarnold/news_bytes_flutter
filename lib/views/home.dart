@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news_bytes/views/news_feed.dart';
-import 'package:news_bytes/views/saved_stories.dart';
 import 'package:news_bytes/views/user_profile.dart';
 
 class Home extends StatefulWidget {
@@ -33,11 +32,6 @@ class _HomeState extends State<Home> {
             label: 'Feed',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.bookmark),
-            icon: Icon(Icons.bookmark_border),
-            label: 'Saved',
-          ),
-          NavigationDestination(
             selectedIcon: Icon(Icons.person_2),
             icon: Icon(Icons.person_2_outlined),
             label: 'Profile',
@@ -51,13 +45,10 @@ class _HomeState extends State<Home> {
         ),
         Container(
           alignment: Alignment.center,
-          child: SavedStoriesList(),
-        ),
-        Container(
-          alignment: Alignment.center,
-          child: const UserProfile(
+          child: UserProfile(
             userName: 'John Doe',
             profileImageUrl: 'assets/images/Pedro-Fake-Profile-696x392.jpg',
+            email: 'john.doe@gmail.com',
           ),
         ),
       ][currentPageIndex],
