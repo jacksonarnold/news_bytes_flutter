@@ -58,7 +58,7 @@ class UserProfile extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return SettingsScreen();
+                            return const SettingsScreen();
                           },
                         ),
                       );

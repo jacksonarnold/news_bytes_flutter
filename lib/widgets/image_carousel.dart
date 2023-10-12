@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../utils/hexagon_clipper.dart';
 
-
 class ImageCarousel extends StatelessWidget {
   final List<String> newsItems;
   final List<String> imageUrls;
@@ -21,7 +20,7 @@ class ImageCarousel extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Row(
-        children: List.generate(newsItems.length, (index) {
+        children: List.generate(imageUrls.length, (index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 2),
             child: GestureDetector(
