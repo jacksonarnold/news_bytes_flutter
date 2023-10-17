@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:news_bytes/views/story_view_test.dart';
 import '../models/api_response.dart';
 import '../widgets/image_carousel.dart';
 import 'story_view.dart';
@@ -44,7 +43,7 @@ class NewsFeedState extends State<NewsFeed> {
     "In the 'purple' state of Ohio, abortion has been a raging battle that could serve as a litmus test for the 2024 election."
   ];
 
-  List<String> storypaths = [
+  List<String> storyPaths = [
     'assets/text/medicaid_summary.txt',
     'assets/text/medicaid_summary.txt',
     'assets/text/medicaid_summary.txt',
@@ -57,7 +56,7 @@ class NewsFeedState extends State<NewsFeed> {
   Future<ApiResponse>? newsFeedFuture;
 
   final NewsFeedService newsService =
-      NewsFeedService('http://your.api/endpoint');
+      NewsFeedService();
 
   final PageController _pageController = PageController(viewportFraction: 0.85);
   int currentPage = 0;
@@ -141,7 +140,7 @@ class NewsFeedState extends State<NewsFeed> {
                               return StoryView(
                                 newsItem: stories[index].originalTitle,
                                 imageUrl: imageUrls[index],
-                                storyPath: storypaths[index],
+                                storyPath: storyPaths[index],
                               );
                             },
                           ),
