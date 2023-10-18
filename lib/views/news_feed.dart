@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/api_response.dart';
+import '../utils/api_response.dart';
 import '../widgets/image_carousel.dart';
 import 'story_view.dart';
 import '../widgets/story_card.dart';
