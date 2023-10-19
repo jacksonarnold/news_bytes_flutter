@@ -14,11 +14,11 @@ class Story {
       required this.originalStory,
       required this.assistantResponse});
 
-  /// Connect the generated [_$PersonFromJson] function to the `fromJson`
+  /// Connect the generated [_$StoryFromJson] function to the `fromJson`
   /// factory.
   factory Story.fromJson(Map<String, dynamic> json) => _$StoryFromJson(json);
 
-  /// Connect the generated [_$PersonToJson] function to the `toJson` method.
+  /// Connect the generated [_$StoryToJson] function to the `toJson` method.
   Map<String, dynamic> toJson() => _$StoryToJson(this);
 
 }
