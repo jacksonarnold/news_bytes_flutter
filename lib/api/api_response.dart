@@ -1,4 +1,4 @@
-import 'models/story.dart';
+import 'package:news_bytes/models/story/story.dart';
 
 class ApiResponse {
   final int status;
