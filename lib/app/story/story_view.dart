@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
-import 'package:news_bytes/views/chat_view.dart';
+import 'package:news_bytes/app/chat/chat_view.dart';
 
 class StoryView extends StatelessWidget {
   final String newsItem;

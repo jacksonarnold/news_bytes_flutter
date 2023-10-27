@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import '../utils/api_response.dart';
-import '../widgets/image_carousel.dart';
-import 'story_view.dart';
-import '../widgets/story_card.dart';
-import '../services/newsfeed_service.dart';
+import '../../../../api/api_response.dart';
+import '../../../../widgets/image_carousel.dart';
+import '../../../../widgets/story_card.dart';
+import '../../story/story_view.dart';
+import 'newsfeed_service.dart';
 
 class NewsFeed extends StatefulWidget {
   const NewsFeed({super.key});
@@ -98,7 +98,6 @@ class NewsFeedState extends State<NewsFeed> {
               ),
             )),
         title: ImageCarousel(
-          newsItems: newsItems,
           imageUrls: imageUrls,
           currentPage: currentPage,
           pageController: _pageController,

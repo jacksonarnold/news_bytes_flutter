@@ -1,4 +1,4 @@
-import 'package:news_bytes/models/story.dart';
+import 'package:news_bytes/api/models/story.dart';
 
 class NewsFeedModel {
   final List<Story> storyList;

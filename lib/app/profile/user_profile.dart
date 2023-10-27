@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_bytes/views/settings_screen.dart';
+import 'package:news_bytes/app/settings/settings_screen.dart';
 
 class UserProfile extends StatelessWidget {
   final String userName;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../views/story_view.dart';
+import '../app/story/story_view.dart';
 
 class StoriesList extends StatelessWidget {
   final List<Map<String, String>> stories;

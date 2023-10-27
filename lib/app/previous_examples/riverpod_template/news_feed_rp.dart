@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:news_bytes/models/newsfeed_model.dart';
-
-import '../services/newsfeed_provider.dart';
+import 'package:news_bytes/app/newsfeed/newsfeed_model.dart';
+import '../../newsfeed/newsfeed_provider.dart';
 
 class NewsFeedRp extends ConsumerStatefulWidget {
   const NewsFeedRp({super.key});

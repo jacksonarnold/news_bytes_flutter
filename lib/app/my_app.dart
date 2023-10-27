@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_authenticator/amplify_authenticator.dart';
-import 'package:news_bytes/views/home.dart';
+import 'package:news_bytes/app/home.dart';
 import 'package:news_bytes/widgets/logo_scaffold.dart';
-import 'amplifyconfiguration.dart';
+import '../utils/amplifyconfiguration.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});

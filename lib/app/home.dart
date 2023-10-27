@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_bytes/views/news_feed.dart';
-import 'package:news_bytes/views/news_feed_rp.dart';
-import 'package:news_bytes/views/user_profile.dart';
+import 'package:news_bytes/app/newsfeed/newsfeed.dart';
+import 'package:news_bytes/app/profile/user_profile.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -42,7 +41,7 @@ class _HomeState extends State<Home> {
       body: <Widget>[
         Container(
           alignment: Alignment.center,
-          child: const NewsFeedRp(),
+          child: const NewsFeed(),
         ),
         Container(
           alignment: Alignment.center,

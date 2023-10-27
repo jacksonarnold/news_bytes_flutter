@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/stories_list.dart';
+import '../../../widgets/stories_list.dart';
 
 class SavedStoriesList extends StatelessWidget {
   final List<Map<String, String>> stories = [

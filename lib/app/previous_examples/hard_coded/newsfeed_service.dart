@@ -1,5 +1,5 @@
-import '../utils/api_client.dart';
-import '../utils/api_response.dart';
+import '../../../api/api_client.dart';
+import '../../../api/api_response.dart';
 
 class NewsFeedService {
   final ApiClient _apiClient = ApiClient();

@@ -23,3 +23,7 @@ The NewsBytes mobile application for aggregating daily news.
   - Must include `factory <CLASS_NAME>.fromJson(Map<String, dynamic> json) => _$<CLASS_NAME>FromJson(json);` decoder
   - Must include `Map<String, dynamic> toJson() => _$<CLASS_NAME>ToJson(this);` encoder
 - `flutter pub run build_runner build --delete-conflicting-outputs` - generate model class decoders
+
+## Generating Provider Classes
+- To generate a new provider class, run `flutter pub run build_runner watch -d` in the terminal
+- **NOTE:** I'm not sure if this is any different than just running `flutter pub run build_runner build --delete-conflicting-outputs` but I'm leaving it here just in case

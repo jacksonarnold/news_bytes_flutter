@@ -1,7 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import '../models/newsfeed_model.dart';
-import '../utils/api_client.dart';
-import '../utils/api_response.dart';
+import 'newsfeed_model.dart';
+import '../../api/api_client.dart';
+import '../../api/api_response.dart';
 
 // Necessary for code-generation to work
 part 'newsfeed_provider.g.dart';

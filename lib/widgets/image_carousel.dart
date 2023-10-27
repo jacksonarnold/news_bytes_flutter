@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import '../utils/hexagon_clipper.dart';
 
 class ImageCarousel extends StatelessWidget {
-  final List<String> newsItems;
   final List<String> imageUrls;
   final int currentPage;
   final PageController pageController;
 
   const ImageCarousel({
     super.key,
-    required this.newsItems,
     required this.imageUrls,
     required this.currentPage,
     required this.pageController,

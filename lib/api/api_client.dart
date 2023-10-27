@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'api_response.dart';
-import 'auth_util.dart';
-import 'config_dev.dart';
+import '../utils/auth_util.dart';
+import '../utils/config_dev.dart';
 
 class ApiClient {
 
