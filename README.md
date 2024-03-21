@@ -1,6 +1,6 @@
 # news_bytes
 
-The NewsBytes mobile application for aggregating daily news.
+The NewsBytes mobile application for daily AI aggregated and AI summarized news.
 
 ## Branching
 
