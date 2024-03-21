@@ -48,7 +48,7 @@ class NewsFeedState extends ConsumerState<NewsFeed> {
                 padding: const EdgeInsets.only(bottom: 8.0),
                 child: FloatingActionButton(
                   onPressed: () {
-                    ref.refresh(newsFeedProvider);
+                    ref.invalidate(newsFeedProvider);
                   },
                   backgroundColor: Colors.black,
                   child: const Image(
